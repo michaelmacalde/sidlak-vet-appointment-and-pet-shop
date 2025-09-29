@@ -1,9 +1,12 @@
 <div>
-
+    {{-- UPDATED 9/30/25
+    REmoved button and added margin buttom to product price--}}
+    {{-- ADDED ICON ON CASH ON DELIVERY AND E WALLET AND ADJUSTED ICON SIZE OF EWALLET OPTIONS --}}
+{{--
     @if (session()->has('selected_checkout_items') || session()->has('buy_now_product'))
         <div class="mb-6 ml-6 mt-4">
             <a wire:navigate href="{{ route('checkout') }}"
-                class="inline-flex items-center px-4 py-2 bg-amber-600 border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-amber-700 focus:bg-amber-700 active:bg-amber-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                class="inline-flex items-center px-4 py-2 bg-yellow-500 hover:bg-yellow-600 dark:bg-gray-400 dark:hover:bg-neutral-400 dark:text-black-400 dark:hover:text-black-400 border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-amber-700 focus:bg-amber-700 active:bg-amber-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition ease-in-out duration-150">
 
                 Back to Checkout
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -12,9 +15,9 @@
                 </svg>
             </a>
         </div>
-    @endif
+    @endif --}}
     {{-- sorting menu  BY CATEGORIES --}}
-    <div class="flex items-center gap-4 mt-10 ml-6">
+    <div class="flex items-center mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6 -mb-6">
 
         <!-- Sorting Menu -->
         <div class="hs-dropdown relative inline-flex" wire:ignore.self x-data="{ showSortOptions: false }">
@@ -33,7 +36,7 @@
 
             <!-- Sorting options that appear when clicking the chevron -->
             <div x-show="showSortOptions" @click.outside="showSortOptions = false"
-                class="absolute left-full top-0 bg-white dark:bg-neutral-800 shadow-md rounded-lg border dark:border-neutral-700 min-w-40 z-20 ml-1"
+                class="absolute left-full top-0 right-2 bg-white dark:bg-neutral-800 shadow-md rounded-lg border dark:border-neutral-700 min-w-40 z-20 ml-3"
                 style="display: none">
                 {{-- ({{ $selectedCatId ?? 'null' }}, --}}
                 <a wire:click.prevent="arrangeBy('asc')" @click="showSortOptions = false"
@@ -99,7 +102,7 @@
 
 
         <!-- Search Bar -->
-        <div class="w-80">
+        <div class="w-80 ml-3">
             <div class="relative">
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
                     <svg class="shrink-0 size-4 text-gray-400 dark:text-white/60" xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +207,7 @@
                         <p class="mt-5 text-gray-600 dark:text-neutral-400"></p>
                         <div class="flex flex-wrap items-center justify-between gap-x-4 overflow-hidden max-w-full">
                             {{-- <p class="text-md font-semibold text-gray-800 dark:text-neutral-300 dark:group-hover:text-white">
-              Status: 
+              Status:
               <span class="{{ $product->prod_quantity > 10 ? 'text-green-500 dark:text-green-400 text-xs' : 'text-red-500 dark:text-red-400 text-xs' }}">
                 {{ $product->prod_quantity > 10 ? 'In Stock' : 'Low in Stock ' . ($product->prod_unit == 'kg' ? (float) $product->prod_quantity . 'kg left' :  (int) $product->prod_quantity . ' left') }}
             </span>
@@ -238,7 +241,7 @@
 
 
 
-                        <div class="mt-auto ">
+                        <div class="mt-3 ">
                             @if ($product->prod_quantity > 0 && $product->prod_unit != 'diff_size')
                                 <livewire:ecommerce.add-to-cart-form :product_id="$product->id"
                                     wire:key="add-to-cart-{{ $product->id }}" />
