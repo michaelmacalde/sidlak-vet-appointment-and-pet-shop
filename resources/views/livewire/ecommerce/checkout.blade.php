@@ -1,8 +1,6 @@
-{{-- UPDATED 9/30/25
-  REMOVED BUTTON AT THE TOP, ADDED NAMES PER INPUT NOT FINISHED ON THE CITY--}}
 <div>
     {{-- Buy Now Mode Indicator --}}
-    @if ($isBuyNowMode)
+    {{-- @if ($isBuyNowMode)
         <div
             class="ml-3 p-3 bg-orange-50 border border-orange-200 rounded-lg mb-4 dark:bg-orange-900/20 dark:border-orange-800">
             <h3 class="text-sm font-semibold text-orange-800 dark:text-orange-200">Buy Now Mode</h3>
@@ -10,12 +8,12 @@
                 <p>You're checking out a single item. Other cart items will not be included in this order.</p>
             </div>
         </div>
-    @endif
+    @endif --}}
 
     {{-- Back to Shop Button --}}
     {{-- <div class="mb-4 ml-3 mt-4">
         <a wire:navigate href="{{ route('page.shop') }}"
-            class="inline-flex items-center px-4 py-2 bg-yellow-500 hover:bg-yellow-600 dark:bg-gray-400 dark:hover:bg-neutral-400 dark:text-black-400 dark:hover:text-black-400 border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-amber-700 focus:bg-amber-700 active:bg-amber-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            class="inline-flex items-center px-4 py-2 bg-amber-600 border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-amber-700 focus:bg-amber-700 active:bg-amber-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition ease-in-out duration-150">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-5 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
@@ -24,7 +22,7 @@
         </a>
     </div> --}}
 
-    <div class="p-4 md:p-8 mx-auto my-6 md:my-12 max-w-7xl">
+    <div class="p-4 md:p-8 mx-auto my-6 md:my-12 max-w-7xl -mt-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             {{-- Product Summary --}}
             <div class="order-2 lg:order-1">
@@ -153,227 +151,240 @@
                         Information</h3>
                     <form wire:key="checkout-form-{{ auth()->id() }}" wire:submit="placeOrder" class="space-y-4">
                         <div class="space-y-3">
-                        <fieldset class="mt-3">
-                                <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full">
-                                    <p class="text-xs text-gray-600 dark:text-neutral-400 mb-0 ml-3 px-1 border border-transparent bg-white dark:bg-transparent">Username</p>
-                                    <label for="input-username" class="sr-only">Username</label>
-                                    <input type="text" id="input-username"  value="{{ auth()->user()->name }}" class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 -mt-2" placeholder="Username" readonly>
-                                    {{-- himuon readonly ang email and username and display the login username and password --}}
+                            <fieldset class="mt-3">
+                                    <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full border-gray-200">
+                                        <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">Full Name</p>
+                            <label for="input-username" class="sr-only">Username</label>
+                            <input type="text" id="input-username" value="{{ auth()->user()->name }}"
+                                class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 -mt-3"
+                                placeholder="Username" readonly>
                                 </legend>
                             </fieldset>
 
-                        <fieldset class="mt-3">
+                            <fieldset class="mt-3">
                                 <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full border-gray-200">
-                                    <p class="text-xs text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">Email</p>
-                                    <label for="input-email" class="sr-only">Email</label>
-                                    <input type="email" id="input-email" value="{{ auth()->user()->email }}"
-                                        class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 -mt-2"
-                                        placeholder="you@site.com" readonly>
+                                    <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">Email</p>
+                            <label for="input-email" class="sr-only">Email</label>
+                            <input type="email" id="input-email" value="{{ auth()->user()->email }}"
+                                class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 -mt-3"
+                                placeholder="you@site.com" readonly>
                                 </legend>
                             </fieldset>
                         </div>
 
-                        <div>
-                            <h3 class="text-lg md:text-xl font-semibold text-gray-700 dark:text-neutral-400 mb-3">
-                                Shipping Address</h3>
-                            <div class="space-y-3">
-                                <div class="relative" x-data="{ open: false }">
-                            <fieldset class="">
-                                <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full border-gray-200">
-                                    <p class="text-xs text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">City</p>
-                                    <div @click="open = !open"
-                                        class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center -mt-2">
-                                        <span>{{ $selectedCity ? $cities->firstWhere('code', $selectedCity)?->name : 'Select or Search City' }}</span>
-                                        <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7"></path>
-                                        </svg>
-                                    </div>
-                                </legend>
-                                </fieldset>
+            {{-- Shipping Address Section --}}
+            <div>
+                <h3 class="text-lg md:text-xl font-semibold text-gray-700 dark:text-neutral-400 mb-3">
+                    Shipping Address</h3>
+                <div class="space-y-3">
+                    <div class="relative" x-data="{ open: false }">
+                        <fieldset class="mt-3">
+                            <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full border-gray-200">
+                                <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">City</p>
+                            <div @click="open = !open"
+                                class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center -mt-3">
+                                <span>{{ $selectedCity ? $cities->firstWhere('code', $selectedCity)?->name : 'Select or Search City' }}</span>
+                                <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                            </legend>
+                        </fieldset>
 
-                                    <div x-show="open" @click.outside="open = false" x-transition x-cloak
-                                        class="absolute z-10 mt-1 w-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg max-h-60 overflow-hidden">
-                                        <div class="relative p-2 border-b border-gray-200 dark:border-neutral-700">
-                                            <input type="text" wire:model.live="searchCity"
-                                                placeholder="Search City"
-                                                class="w-full px-3 py-2 border rounded-md focus:outline-none bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-200">
-                                            <button type="button"
-                                                class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-neutral-400 dark:hover:text-neutral-200"
-                                                @click="$wire.set('searchCity', '')">&times;</button>
-                                        </div>
-
-                                        <ul class="max-h-48 overflow-y-auto py-1">
-                                            @forelse ($cities as $city)
-                                                <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer text-gray-700 dark:text-neutral-200"
-                                                    wire:click="selectCity('{{ $city->code }}'); open=false">
-                                                    {{ $city->name }}
-                                                </li>
-                                            @empty
-                                                <li class="px-4 py-2 text-gray-500 dark:text-neutral-400 text-center">
-                                                    No City found</li>
-                                            @endforelse
-                                        </ul>
-                                    </div>
+                        <div x-show="open" @click.outside="open = false" x-transition x-cloak
+                            class="absolute z-10 mt-1 w-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg max-h-60 overflow-hidden">
+                                <div class="relative p-2 border-b border-gray-200 dark:border-neutral-700">
+                                    <input type="text" wire:model.live="searchCity"
+                                        placeholder="Search City"
+                                        class="w-full px-3 py-2 border rounded-md focus:outline-none bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-200">
+                                    <button type="button"
+                                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-neutral-400 dark:hover:text-neutral-200"
+                                        @click="$wire.set('searchCity', '')">&times;</button>
                                 </div>
 
-                                @if ($selectedCity)
-                                    <div class="relative" x-data="{ open: false }">
-                                        <div @click="open = !open"
-                                            class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center">
-                                            <span>{{ $selectedBarangay ? $barangays->firstWhere('name', $selectedBarangay)?->name : 'Select or Search Barangay' }}</span>
-                                            <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 9l-7 7-7-7"></path>
-                                            </svg>
-                                        </div>
+                            <ul class="max-h-48 overflow-y-auto py-1">
+                                @forelse ($cities as $city)
+                                    <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer text-gray-700 dark:text-neutral-200"
+                                        wire:click="selectCity('{{ $city->code }}'); open=false">
+                                        {{ $city->name }}
+                                    </li>
+                                @empty
+                                    <li class="px-4 py-2 text-gray-500 dark:text-neutral-400 text-center">
+                                        No City found</li>
+                                @endforelse
+                            </ul>
+                        </div>
+                    </div>
 
-                                        <div x-show="open" @click.outside="open = false" x-transition x-cloak
-                                            class="absolute z-10 mt-1 w-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg max-h-60 overflow-hidden">
-                                            <div class="relative p-2 border-b border-gray-200 dark:border-neutral-700">
-                                                <input type="text" wire:model.live="searchBrgy"
-                                                    placeholder="Search Barangay"
-                                                    class="w-full px-3 py-2 border rounded-md focus:outline-none bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-200">
-                                                <button type="button"
-                                                    class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-neutral-400 dark:hover:text-neutral-200"
-                                                    @click="$wire.set('searchBrgy', '')">&times;</button>
-                                            </div>
 
-                                            <ul class="max-h-48 overflow-y-auto py-1">
-                                                @forelse ($barangays as $brgy)
-                                                    <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer text-gray-700 dark:text-neutral-200"
-                                                        wire:click="selectBrgy('{{ $brgy->name }}'); open=false">
-                                                        {{ $brgy->name }}
-                                                    </li>
-                                                @empty
-                                                    <li
-                                                        class="px-4 py-2 text-gray-500 dark:text-neutral-400 text-center">
-                                                        No Barangay Found</li>
-                                                @endforelse
-                                            </ul>
-                                        </div>
-                                    </div>
-                                @endif
+                    @if ($selectedCity)
+                        <div class="relative" x-data="{ open: false }">
+                        <fieldset class="mt-3">
+                            <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full border-gray-200">
+                                <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">Barangay</p>
+                            <div @click="open = !open"
+                                class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center -mt-3">
+                                <span>{{ $selectedBarangay ? $barangays->firstWhere('name', $selectedBarangay)?->name : 'Select or Search Barangay' }}</span>
+                                <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                            </legend>
+                        </fieldset>
 
-                                <div class="flex flex-col items-start pt-2 gap-2">
-                                    <div class="flex items-start">
-                                        <input type="checkbox" id="same_as_billing" name="same_as_billing"
-                                            wire:model.live="same_as_billing"
-                                            class="shrink-0 mt-1 me-2 border-gray-200 rounded-sm text-blue-600 dark:bg-neutral-800 dark:border-neutral-700">
-                                        <label for="same_as_billing"
-                                            class="text-sm text-gray-700 dark:text-neutral-400 cursor-pointer">Is
-                                            Billing
-                                            Address same as Shipping Address?</label>
-                                    </div>
-
-                                    <div class="flex items-start w-full">
-                                <fieldset class="mt-3 w-full">
-                                    <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full">
-                                        <p class="text-xs text-black-600 dark:text-neutral-400 mb-0 ml-3 px-1 border border-transparent bg-white dark:bg-transparent">Notes</p>
-                                        <textarea
-                                        wire:model="notes"
-                                        class="py-2 px-3 sm:py-3 sm:px-4 block w-full bg-white-100 border-neutral-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 -mt-2"
-                                        rows="3" placeholder="Type your notes here..."></textarea>
-                                    </legend>
-                                </fieldset>
-                                    </div>
+                            <div x-show="open" @click.outside="open = false" x-transition x-cloak
+                                class="absolute z-10 mt-1 w-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg max-h-60 overflow-hidden">
+                                <div class="relative p-2 border-b border-gray-200 dark:border-neutral-700">
+                                    <input type="text" wire:model.live="searchBrgy"
+                                        placeholder="Search Barangay"
+                                        class="w-full px-3 py-2 border rounded-md focus:outline-none bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-200">
+                                    <button type="button"
+                                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-neutral-400 dark:hover:text-neutral-200"
+                                        @click="$wire.set('searchBrgy', '')">&times;</button>
                                 </div>
 
-
-                                {{-- @if ($is_notes)
-                                    {{-- <div class="max-w-sm space-y-3"> --}}
-                                    {{-- <textarea
-                                        wire:model="notes"
-                                        class="py-2 px-3 sm:py-3 sm:px-4 block w-full bg-gray-100 border-transparent rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                        rows="3" placeholder="Type your notes here..."></textarea> --}}
-                                    {{-- </div> --}}
-                                {{-- @endif --}}
-
-                                {{-- @if ($same_as_billing == false)
-                                    {{-- billing address city --}}
-                                    {{--<div class="relative" x-data="{ open: false }">
-                                        <div @click="open = !open"
-                                            class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center">
-                                            <span>{{ $billing_city ? $bil_cities->firstWhere('code', $billing_city)?->name : 'Select or Search City' }}</span>
-                                            <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 9l-7 7-7-7"></path>
-                                            </svg>
-                                        </div>
-
-                                        <div x-show="open" @click.outside="open = false" x-transition x-cloak
-                                            class="absolute z-10 mt-1 w-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg max-h-60 overflow-hidden">
-                                            <div class="relative p-2 border-b border-gray-200 dark:border-neutral-700">
-                                                <input type="text" wire:model.live="billingSearchCity"
-                                                    placeholder="Search City"
-                                                    class="w-full px-3 py-2 border rounded-md focus:outline-none bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-200">
-                                                <button type="button"
-                                                    class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-neutral-400 dark:hover:text-neutral-200"
-                                                    @click="$wire.set('billingSearchCity', '')">&times;</button>
-                                            </div>
-
-                                            <ul class="max-h-48 overflow-y-auto py-1">
-                                                @forelse ($bil_cities as $city)
-                                                    <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer text-gray-700 dark:text-neutral-200"
-                                                        wire:click="bilSelectCity('{{ $city->code }}'); open=false">
-                                                        {{ $city->name }}
-                                                    </li>
-                                                @empty
-                                                    <li
-                                                        class="px-4 py-2 text-gray-500 dark:text-neutral-400 text-center">
-                                                        No City found</li>
-                                                @endforelse
-                                            </ul>
-                                        </div>
-                                    </div> --}}
-
-                                    {{-- @if ($billing_city) --}}
-                                        {{-- barangay billing address --}}
-                                        {{-- <div class="relative" x-data="{ open: false }">
-                                            <div @click="open = !open"
-                                                class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center">
-                                                <span>{{ $billing_brgy ? $bil_barangays->firstWhere('name', $billing_brgy)?->name : 'Select or Search Barangay' }}</span>
-                                                <svg class="w-4 h-4 transition-transform"
-                                                    :class="{ 'rotate-180': open }" fill="none"
-                                                    stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                </svg>
-                                            </div>
-
-                                            <div x-show="open" @click.outside="open = false" x-transition x-cloak
-                                                class="absolute z-10 mt-1 w-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg max-h-60 overflow-hidden">
-                                                <div
-                                                    class="relative p-2 border-b border-gray-200 dark:border-neutral-700">
-                                                    <input type="text" wire:model.live="billingSearchBrgy"
-                                                        placeholder="Search Barangay"
-                                                        class="w-full px-3 py-2 border rounded-md focus:outline-none bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-200">
-                                                    <button type="button"
-                                                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-neutral-400 dark:hover:text-neutral-200"
-                                                        @click="$wire.set('billingSearchBrgy', '')">&times;</button>
-                                                </div>
-
-                                                <ul class="max-h-48 overflow-y-auto py-1">
-                                                    @forelse ($bil_barangays as $brgy)
-                                                        <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer text-gray-700 dark:text-neutral-200"
-                                                            wire:click="bilSelectBrgy('{{ $brgy->name }}'); open=false">
-                                                            {{ $brgy->name }}
-                                                        </li>
-                                                    @empty
-                                                        <li
-                                                            class="px-4 py-2 text-gray-500 dark:text-neutral-400 text-center">
-                                                            No Barangay Found</li>
-                                                    @endforelse
-                                                </ul>
-                                            </div>
-                                        </div> --}}
-                                    {{-- @endif --}}
-                                {{-- @endif --}}
+                                <ul class="max-h-48 overflow-y-auto py-1">
+                                    @forelse ($barangays as $brgy)
+                                        <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer text-gray-700 dark:text-neutral-200"
+                                            wire:click="selectBrgy('{{ $brgy->name }}'); open=false">
+                                            {{ $brgy->name }}
+                                        </li>
+                                    @empty
+                                        <li
+                                            class="px-4 py-2 text-gray-500 dark:text-neutral-400 text-center">
+                                            No Barangay Found</li>
+                                    @endforelse
+                                </ul>
                             </div>
                         </div>
+                    @endif
+
+                    <div class="flex flex-col items-start pt-2 gap-2">
+                        <div class="flex items-start">
+                            <input type="checkbox" id="same_as_billing" name="same_as_billing"
+                                wire:model.live="same_as_billing"
+                                class="shrink-0 mt-1 me-2 border-gray-200 rounded-sm text-blue-600 dark:bg-neutral-800 dark:border-neutral-700">
+                            <label for="same_as_billing"
+                                class="text-sm text-gray-700 dark:text-neutral-400 cursor-pointer">
+                                Is Billing Address same as Shipping Address?</label>
+                        </div>
+                    </div>
+
+
+                    @if ($same_as_billing == false)
+                        {{-- billing address city --}}
+                        <div class="relative" x-data="{ open: false }">
+                            <h3 class="text-lg md:text-xl font-semibold text-gray-700 dark:text-neutral-400 mb-3">
+                            Billing Address</h3>
+
+                        <fieldset class="mt-3">
+                            <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full border-gray-200">
+                                <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">City</p>
+                            <div @click="open = !open"
+                                class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center -mt-3">
+                                <span>{{ $billing_city ? $bil_cities->firstWhere('code', $billing_city)?->name : 'Select or Search City' }}</span>
+                                <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                            </legend>
+                        </fieldset>
+
+                            <div x-show="open" @click.outside="open = false" x-transition x-cloak
+                                class="absolute z-10 mt-1 w-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg max-h-60 overflow-hidden">
+                                <div class="relative p-2 border-b border-gray-200 dark:border-neutral-700">
+                                    <input type="text" wire:model.live="billingSearchCity"
+                                        placeholder="Search City"
+                                        class="w-full px-3 py-2 border rounded-md focus:outline-none bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-200">
+                                    <button type="button"
+                                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-neutral-400 dark:hover:text-neutral-200"
+                                        @click="$wire.set('billingSearchCity', '')">&times;</button>
+                                </div>
+
+                                <ul class="max-h-48 overflow-y-auto py-1">
+                                    @forelse ($bil_cities as $city)
+                                        <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer text-gray-700 dark:text-neutral-200"
+                                            wire:click="bilSelectCity('{{ $city->code }}'); open=false">
+                                            {{ $city->name }}
+                                        </li>
+                                    @empty
+                                        <li
+                                            class="px-4 py-2 text-gray-500 dark:text-neutral-400 text-center">
+                                            No City found</li>
+                                    @endforelse
+                                </ul>
+                            </div>
+                        </div>
+
+                        @if ($billing_city)
+                            {{-- barangay billing address --}}
+                            <div class="relative" x-data="{ open: false }">
+                            <fieldset class="mt-3">
+                                <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full border-gray-200">
+                                <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">Barangay</p>
+                                <div @click="open = !open"
+                                    class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center">
+                                    <span>{{ $billing_brgy ? $bil_barangays->firstWhere('name', $billing_brgy)?->name : 'Select or Search Barangay' }}</span>
+                                    <svg class="w-4 h-4 transition-transform"
+                                        :class="{ 'rotate-180': open }" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                                </legend>
+                            </fieldset>
+
+                                <div x-show="open" @click.outside="open = false" x-transition x-cloak
+                                    class="absolute z-10 mt-1 w-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg max-h-60 overflow-hidden">
+                                    <div
+                                        class="relative p-2 border-b border-gray-200 dark:border-neutral-700">
+                                        <input type="text" wire:model.live="billingSearchBrgy"
+                                            placeholder="Search Barangay"
+                                            class="w-full px-3 py-2 border rounded-md focus:outline-none bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-200">
+                                        <button type="button"
+                                            class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-neutral-400 dark:hover:text-neutral-200"
+                                            @click="$wire.set('billingSearchBrgy', '')">&times;</button>
+                                    </div>
+
+                                    <ul class="max-h-48 overflow-y-auto py-1">
+                                        @forelse ($bil_barangays as $brgy)
+                                            <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer text-gray-700 dark:text-neutral-200"
+                                                wire:click="bilSelectBrgy('{{ $brgy->name }}'); open=false">
+                                                {{ $brgy->name }}
+                                            </li>
+                                        @empty
+                                            <li
+                                                class="px-4 py-2 text-gray-500 dark:text-neutral-400 text-center">
+                                                No Barangay Found</li>
+                                        @endforelse
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
+                    @endif
+
+                    {{-- Notes --}}
+                    <div class="w-full space-y-3">
+                        <fieldset class="mt-3 w-full">
+                            <legend class="text-xs text-gray-600 dark:text-neutral-400 mt-3 w-full">
+                                <p class="text-base text-black-600 dark:text-neutral-400 bg-white mb-0 ml-3 px-1 border border-transparent dark:bg-transparent">Notes</p>
+                            <textarea
+                                wire:model="notes"
+                                class="py-2 px-3 sm:py-3 sm:px-4 block w-full bg-white border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 -mt-3"
+                                rows="3" placeholder="Type your notes here..."></textarea>
+                            </legend>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            {{-- End of Shipping Address --}}
 
                         {{-- Payment Method Section --}}
                         <div>
@@ -386,7 +397,7 @@
                                         @change="paymentMethod = 'cod'" :checked="paymentMethod === 'cod'">
                                     <label for="payment-cod"
                                         class="flex items-center justify-center p-3 w-full bg-white border border-gray-200 rounded-lg text-xs sm:text-sm cursor-pointer transition-colors duration-200 peer-checked/cod:border-amber-500 peer-checked/cod:text-amber-600 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:peer-checked/cod:text-amber-400">
-                                    <svg version="1.1" id="ecommerce_1_" class = "w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 115 115" style="enable-background:new 0 0 115 115" xml:space="preserve"><style>.st0{fill:#ffeead}.st7{fill:#71a58a}.st10{fill:#639376}</style><g id="cash_on_delivery_1_"><path class="st7" d="M97.945 69.389H15.99L0 100.186h115z"/><path d="m102.967 90.618-7.716-15.842c-3.111.01-6.181-1.093-6.833-2.654H25.609c-.598 1.566-3.622 2.889-6.733 2.899L11.712 90.91c3.717-.012 5.987 1.925 5.027 4.437h81.355c-1.046-2.505 1.156-4.717 4.873-4.729z" style="fill:#96ceb4"/><path class="st0" d="M74.422 82.072c-1.094-5.164-8.83-8.906-17.388-8.878-8.558.027-16.163 3.819-17.077 8.989-1.035 5.852 6.709 11.168 17.427 11.133 10.718-.035 18.276-5.399 17.038-11.244z"/><path class="st7" d="M64.142 84.513c-.11-1.182-1.258-2.22-3.282-3.07-2.144-.904-3.184-1.34-3.194-1.757-.003-.121.117-.26.394-.26.246-.001.825.657 1.043.656l4.241-.136c.215-.018.333-.088.323-.192-.139-1.5-1.932-2.749-4.699-3.048-.038-.942-.041-1.036-.277-1.035l-2.15.007c-.118 0-.205.064-.205.143l.007.878c-2.781.317-4.334 1.643-4.39 2.938-.054 1.264 1.073 2.323 2.873 3.072 2.546 1.062 3.334 1.479 3.348 1.98.007.253-.284.43-.71.431-.756.003-1.283-.405-1.514-1.078-.065-.171-.163-.209-.357-.208l-4.118.147c-.163.019-.263.077-.267.173-.113 2.318 1.677 3.723 5.232 4.108.011 1.273.012 1.424.287 1.423l2.482-.008c.138-.001.272-.087.269-.173l-.049-1.23c3.132-.39 4.897-1.788 4.713-3.761zM92.986 78.97c-.122-.279-.631-.505-1.133-.504l-12.76.041c-.501.002-.851.23-.777.51.075.281.551.512 1.058.51l12.913-.041c.508-.002.822-.235.699-.516zM94.313 82.008c-.131-.3-.662-.542-1.181-.54l-13.211.042c-.519.002-.879.247-.8.547.08.301.576.549 1.101.547l13.375-.043c.526-.001.847-.251.716-.553zM95.737 85.27c-.141-.322-.695-.583-1.233-.581l-13.694.044c-.538.002-.909.265-.823.587.086.325.603.591 1.148.589l13.871-.044c.544-.002.873-.271.731-.595z"/><g><path class="st7" d="m34.979 78.649-12.76.041c-.501.002-1.003.231-1.116.511-.114.282.208.513.715.511l12.913-.041c.507-.002.976-.235 1.042-.517.065-.28-.292-.507-.794-.505zM34.249 81.657l-13.211.043c-.519.002-1.042.248-1.163.548-.122.302.208.55.733.548l13.375-.043c.525-.002 1.013-.252 1.083-.554.07-.301-.298-.544-.817-.542zM33.466 84.885l-13.694.044c-.538.002-1.084.266-1.214.589-.131.325.207.592.752.59l13.871-.044c.545-.002 1.053-.271 1.128-.596.074-.324-.305-.585-.843-.583z"/></g><g><path class="st7" d="M92.986 78.97c-.122-.279-.631-.505-1.133-.504l-12.76.041c-.501.002-.851.23-.777.51.075.281.551.512 1.058.51l12.913-.041c.508-.002.822-.235.699-.516zM94.313 82.008c-.131-.3-.662-.542-1.181-.54l-13.211.042c-.519.002-.879.247-.8.547.08.301.576.549 1.101.547l13.375-.043c.526-.001.847-.251.716-.553zM95.737 85.27c-.141-.322-.695-.583-1.233-.581l-13.694.044c-.538.002-.909.265-.823.587.086.325.603.591 1.148.589l13.871-.044c.544-.002.873-.271.731-.595z"/><g><path class="st7" d="m34.979 78.649-12.76.041c-.501.002-1.003.231-1.116.511-.114.282.208.513.715.511l12.913-.041c.507-.002.976-.235 1.042-.517.065-.28-.292-.507-.794-.505zM34.249 81.657l-13.211.043c-.519.002-1.042.248-1.163.548-.122.302.208.55.733.548l13.375-.043c.525-.002 1.013-.252 1.083-.554.07-.301-.298-.544-.817-.542zM33.466 84.885l-13.694.044c-.538.002-1.084.266-1.214.589-.131.325.207.592.752.59l13.871-.044c.545-.002 1.053-.271 1.128-.596.074-.324-.305-.585-.843-.583z"/></g><g><path class="st7" d="M97.945 69.389h-17.77c-.014.812-.496 1.744-1.315 2.733h9.558c.652 1.562 3.722 2.664 6.833 2.654l7.716 15.842c-3.717.012-5.919 2.224-4.872 4.73H16.739c.959-2.512-1.311-4.449-5.028-4.437l7.164-15.89c3.111-.01 6.135-1.334 6.733-2.899h8.626c-.548-.765-.867-1.493-.876-2.147-.003-.197.039-.391.072-.586H15.99L0 100.186h115L97.945 69.389z"/><path class="st0" d="M74.422 82.072c-.339-1.599-1.317-3.062-2.758-4.318-3.02 1.797-6.407 3.388-9.41 4.39 1.153.699 1.806 1.494 1.887 2.369.184 1.973-1.581 3.371-4.712 3.757l.049 1.23c.003.086-.131.173-.269.173l-2.482.008c-.275.001-.277-.15-.287-1.422-3.554-.385-5.345-1.79-5.232-4.108.005-.096.104-.154.267-.173l4.118-.147c.194 0 .292.037.357.209.231.673.759 1.081 1.514 1.078.427-.001.717-.178.71-.431-.011-.412-.563-.772-2.164-1.474-3.789-.273-9.263-2.344-13.886-4.929-1.145 1.164-1.918 2.477-2.169 3.9-1.035 5.852 6.709 11.168 17.427 11.133 10.72-.036 18.278-5.4 17.04-11.245z"/><path class="st7" d="M64.142 84.513c-.082-.875-.735-1.67-1.887-2.369-2.018.673-3.862 1.083-5.295 1.103-.301.004-.62-.011-.948-.035 1.601.702 2.152 1.063 2.164 1.474.007.253-.284.43-.71.431-.756.003-1.283-.405-1.514-1.078-.065-.171-.163-.209-.357-.209l-4.118.147c-.163.019-.263.077-.267.173-.114 2.318 1.677 3.723 5.232 4.108.011 1.273.012 1.424.287 1.422l2.482-.008c.138-.001.272-.087.269-.173l-.049-1.23c3.13-.385 4.895-1.783 4.711-3.756z"/><path class="st10" d="M33.431 69.389c-.033.195-.075.389-.072.586.009.654.328 1.381.876 2.147H78.86c.82-.989 1.301-1.921 1.315-2.733H33.431z"/><path class="st7" d="M34.235 72.122c1.414 1.975 4.405 4.212 7.891 6.161 3.017-3.067 8.704-5.07 14.908-5.09 5.908-.019 11.421 1.76 14.63 4.56 3.036-1.805 5.689-3.813 7.196-5.631H34.235z"/><path d="M57.034 73.193c-6.203.02-11.891 2.023-14.908 5.09 4.622 2.585 10.097 4.656 13.886 4.929a65.72 65.72 0 0 0-1.185-.506c-1.8-.749-2.927-1.808-2.873-3.071.055-1.295 1.608-2.621 4.39-2.938l-.007-.878c-.001-.079.087-.142.205-.143l2.15-.007c.236-.001.239.093.277 1.035 2.766.299 4.559 1.548 4.699 3.049.01.104-.108.174-.323.192l-4.241.136c-.217.001-.796-.657-1.043-.656-.277.001-.397.14-.394.261.01.417 1.05.854 3.194 1.758.526.22.99.454 1.395.7 3.002-1.002 6.389-2.593 9.41-4.39-3.212-2.801-8.725-4.58-14.632-4.561z" style="fill:#d3c089"/><path class="st10" d="M58.968 76.705c-.038-.942-.041-1.036-.277-1.035l-2.15.007c-.118 0-.205.064-.205.143l.007.878c-2.781.317-4.334 1.643-4.39 2.938-.054 1.263 1.073 2.323 2.873 3.071.455.189.836.353 1.185.506.328.023.647.039.948.035 1.433-.02 3.277-.43 5.295-1.103-.405-.246-.869-.48-1.395-.7-2.144-.904-3.184-1.34-3.194-1.758-.003-.121.117-.259.394-.261.247-.001.825.657 1.043.656l4.241-.136c.215-.018.333-.088.323-.192-.139-1.501-1.932-2.75-4.698-3.049z"/></g></g><g><path d="M56.066 14.816c-12.93.18-23.264 10.863-23.083 23.86.181 12.997 16.513 36.801 23.928 36.697 6.904-.096 23.076-24.353 22.895-37.35-.181-12.997-10.81-23.387-23.74-23.207z" style="fill:#ff6f69"/><ellipse transform="rotate(-90.802 56.398 38.737)" class="st0" cx="56.4" cy="38.737" rx="12.245" ry="12.181"/></g></g></svg>
+                                        <svg version="1.1" id="ecommerce_1_" class = "w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 115 115" style="enable-background:new 0 0 115 115" xml:space="preserve"><style>.st0{fill:#ffeead}.st7{fill:#71a58a}.st10{fill:#639376}</style><g id="cash_on_delivery_1_"><path class="st7" d="M97.945 69.389H15.99L0 100.186h115z"/><path d="m102.967 90.618-7.716-15.842c-3.111.01-6.181-1.093-6.833-2.654H25.609c-.598 1.566-3.622 2.889-6.733 2.899L11.712 90.91c3.717-.012 5.987 1.925 5.027 4.437h81.355c-1.046-2.505 1.156-4.717 4.873-4.729z" style="fill:#96ceb4"/><path class="st0" d="M74.422 82.072c-1.094-5.164-8.83-8.906-17.388-8.878-8.558.027-16.163 3.819-17.077 8.989-1.035 5.852 6.709 11.168 17.427 11.133 10.718-.035 18.276-5.399 17.038-11.244z"/><path class="st7" d="M64.142 84.513c-.11-1.182-1.258-2.22-3.282-3.07-2.144-.904-3.184-1.34-3.194-1.757-.003-.121.117-.26.394-.26.246-.001.825.657 1.043.656l4.241-.136c.215-.018.333-.088.323-.192-.139-1.5-1.932-2.749-4.699-3.048-.038-.942-.041-1.036-.277-1.035l-2.15.007c-.118 0-.205.064-.205.143l.007.878c-2.781.317-4.334 1.643-4.39 2.938-.054 1.264 1.073 2.323 2.873 3.072 2.546 1.062 3.334 1.479 3.348 1.98.007.253-.284.43-.71.431-.756.003-1.283-.405-1.514-1.078-.065-.171-.163-.209-.357-.208l-4.118.147c-.163.019-.263.077-.267.173-.113 2.318 1.677 3.723 5.232 4.108.011 1.273.012 1.424.287 1.423l2.482-.008c.138-.001.272-.087.269-.173l-.049-1.23c3.132-.39 4.897-1.788 4.713-3.761zM92.986 78.97c-.122-.279-.631-.505-1.133-.504l-12.76.041c-.501.002-.851.23-.777.51.075.281.551.512 1.058.51l12.913-.041c.508-.002.822-.235.699-.516zM94.313 82.008c-.131-.3-.662-.542-1.181-.54l-13.211.042c-.519.002-.879.247-.8.547.08.301.576.549 1.101.547l13.375-.043c.526-.001.847-.251.716-.553zM95.737 85.27c-.141-.322-.695-.583-1.233-.581l-13.694.044c-.538.002-.909.265-.823.587.086.325.603.591 1.148.589l13.871-.044c.544-.002.873-.271.731-.595z"/><g><path class="st7" d="m34.979 78.649-12.76.041c-.501.002-1.003.231-1.116.511-.114.282.208.513.715.511l12.913-.041c.507-.002.976-.235 1.042-.517.065-.28-.292-.507-.794-.505zM34.249 81.657l-13.211.043c-.519.002-1.042.248-1.163.548-.122.302.208.55.733.548l13.375-.043c.525-.002 1.013-.252 1.083-.554.07-.301-.298-.544-.817-.542zM33.466 84.885l-13.694.044c-.538.002-1.084.266-1.214.589-.131.325.207.592.752.59l13.871-.044c.545-.002 1.053-.271 1.128-.596.074-.324-.305-.585-.843-.583z"/></g><g><path class="st7" d="M92.986 78.97c-.122-.279-.631-.505-1.133-.504l-12.76.041c-.501.002-.851.23-.777.51.075.281.551.512 1.058.51l12.913-.041c.508-.002.822-.235.699-.516zM94.313 82.008c-.131-.3-.662-.542-1.181-.54l-13.211.042c-.519.002-.879.247-.8.547.08.301.576.549 1.101.547l13.375-.043c.526-.001.847-.251.716-.553zM95.737 85.27c-.141-.322-.695-.583-1.233-.581l-13.694.044c-.538.002-.909.265-.823.587.086.325.603.591 1.148.589l13.871-.044c.544-.002.873-.271.731-.595z"/><g><path class="st7" d="m34.979 78.649-12.76.041c-.501.002-1.003.231-1.116.511-.114.282.208.513.715.511l12.913-.041c.507-.002.976-.235 1.042-.517.065-.28-.292-.507-.794-.505zM34.249 81.657l-13.211.043c-.519.002-1.042.248-1.163.548-.122.302.208.55.733.548l13.375-.043c.525-.002 1.013-.252 1.083-.554.07-.301-.298-.544-.817-.542zM33.466 84.885l-13.694.044c-.538.002-1.084.266-1.214.589-.131.325.207.592.752.59l13.871-.044c.545-.002 1.053-.271 1.128-.596.074-.324-.305-.585-.843-.583z"/></g><g><path class="st7" d="M97.945 69.389h-17.77c-.014.812-.496 1.744-1.315 2.733h9.558c.652 1.562 3.722 2.664 6.833 2.654l7.716 15.842c-3.717.012-5.919 2.224-4.872 4.73H16.739c.959-2.512-1.311-4.449-5.028-4.437l7.164-15.89c3.111-.01 6.135-1.334 6.733-2.899h8.626c-.548-.765-.867-1.493-.876-2.147-.003-.197.039-.391.072-.586H15.99L0 100.186h115L97.945 69.389z"/><path class="st0" d="M74.422 82.072c-.339-1.599-1.317-3.062-2.758-4.318-3.02 1.797-6.407 3.388-9.41 4.39 1.153.699 1.806 1.494 1.887 2.369.184 1.973-1.581 3.371-4.712 3.757l.049 1.23c.003.086-.131.173-.269.173l-2.482.008c-.275.001-.277-.15-.287-1.422-3.554-.385-5.345-1.79-5.232-4.108.005-.096.104-.154.267-.173l4.118-.147c.194 0 .292.037.357.209.231.673.759 1.081 1.514 1.078.427-.001.717-.178.71-.431-.011-.412-.563-.772-2.164-1.474-3.789-.273-9.263-2.344-13.886-4.929-1.145 1.164-1.918 2.477-2.169 3.9-1.035 5.852 6.709 11.168 17.427 11.133 10.72-.036 18.278-5.4 17.04-11.245z"/><path class="st7" d="M64.142 84.513c-.082-.875-.735-1.67-1.887-2.369-2.018.673-3.862 1.083-5.295 1.103-.301.004-.62-.011-.948-.035 1.601.702 2.152 1.063 2.164 1.474.007.253-.284.43-.71.431-.756.003-1.283-.405-1.514-1.078-.065-.171-.163-.209-.357-.209l-4.118.147c-.163.019-.263.077-.267.173-.114 2.318 1.677 3.723 5.232 4.108.011 1.273.012 1.424.287 1.422l2.482-.008c.138-.001.272-.087.269-.173l-.049-1.23c3.13-.385 4.895-1.783 4.711-3.756z"/><path class="st10" d="M33.431 69.389c-.033.195-.075.389-.072.586.009.654.328 1.381.876 2.147H78.86c.82-.989 1.301-1.921 1.315-2.733H33.431z"/><path class="st7" d="M34.235 72.122c1.414 1.975 4.405 4.212 7.891 6.161 3.017-3.067 8.704-5.07 14.908-5.09 5.908-.019 11.421 1.76 14.63 4.56 3.036-1.805 5.689-3.813 7.196-5.631H34.235z"/><path d="M57.034 73.193c-6.203.02-11.891 2.023-14.908 5.09 4.622 2.585 10.097 4.656 13.886 4.929a65.72 65.72 0 0 0-1.185-.506c-1.8-.749-2.927-1.808-2.873-3.071.055-1.295 1.608-2.621 4.39-2.938l-.007-.878c-.001-.079.087-.142.205-.143l2.15-.007c.236-.001.239.093.277 1.035 2.766.299 4.559 1.548 4.699 3.049.01.104-.108.174-.323.192l-4.241.136c-.217.001-.796-.657-1.043-.656-.277.001-.397.14-.394.261.01.417 1.05.854 3.194 1.758.526.22.99.454 1.395.7 3.002-1.002 6.389-2.593 9.41-4.39-3.212-2.801-8.725-4.58-14.632-4.561z" style="fill:#d3c089"/><path class="st10" d="M58.968 76.705c-.038-.942-.041-1.036-.277-1.035l-2.15.007c-.118 0-.205.064-.205.143l.007.878c-2.781.317-4.334 1.643-4.39 2.938-.054 1.263 1.073 2.323 2.873 3.071.455.189.836.353 1.185.506.328.023.647.039.948.035 1.433-.02 3.277-.43 5.295-1.103-.405-.246-.869-.48-1.395-.7-2.144-.904-3.184-1.34-3.194-1.758-.003-.121.117-.259.394-.261.247-.001.825.657 1.043.656l4.241-.136c.215-.018.333-.088.323-.192-.139-1.501-1.932-2.75-4.698-3.049z"/></g></g><g><path d="M56.066 14.816c-12.93.18-23.264 10.863-23.083 23.86.181 12.997 16.513 36.801 23.928 36.697 6.904-.096 23.076-24.353 22.895-37.35-.181-12.997-10.81-23.387-23.74-23.207z" style="fill:#ff6f69"/><ellipse transform="rotate(-90.802 56.398 38.737)" class="st0" cx="56.4" cy="38.737" rx="12.245" ry="12.181"/></g></g></svg>
                                         Cash on Delivery
                                     </label>
 
@@ -412,7 +423,7 @@
                                                     :disabled="paymentMethod !== 'ewallet'">
                                                 <label for="{{ $payment['id'] }}"
                                                     class="ml-2 flex items-center cursor-pointer">
-                                                    <img src="{{ asset($payment['img']) }}" class="w-10 h-4 mr-1">
+                                                    <img src="{{ asset($payment['img']) }}" class="w-6 h-6 mr-1">
                                                     <span
                                                         class="text-xs text-gray-700 dark:text-neutral-300">{{ $payment['label'] }}</span>
                                                 </label>
