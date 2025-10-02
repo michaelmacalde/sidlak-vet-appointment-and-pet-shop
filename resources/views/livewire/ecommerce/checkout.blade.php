@@ -156,7 +156,7 @@
                                         <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">Full Name</p>
                             <label for="input-username" class="sr-only">Username</label>
                             <input type="text" id="input-username" value="{{ auth()->user()->name }}"
-                                class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 -mt-3"
+                                class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500"
                                 placeholder="Username" readonly>
                                 </legend>
                             </fieldset>
@@ -166,7 +166,7 @@
                                     <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">Email</p>
                             <label for="input-email" class="sr-only">Email</label>
                             <input type="email" id="input-email" value="{{ auth()->user()->email }}"
-                                class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 -mt-3"
+                                class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500"
                                 placeholder="you@site.com" readonly>
                                 </legend>
                             </fieldset>
@@ -182,7 +182,7 @@
                             <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full border-gray-200">
                                 <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">City</p>
                             <div @click="open = !open"
-                                class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center -mt-3">
+                                class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center">
                                 <span>{{ $selectedCity ? $cities->firstWhere('code', $selectedCity)?->name : 'Select or Search City' }}</span>
                                 <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -225,7 +225,7 @@
                             <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full border-gray-200">
                                 <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">Barangay</p>
                             <div @click="open = !open"
-                                class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center -mt-3">
+                                class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center">
                                 <span>{{ $selectedBarangay ? $barangays->firstWhere('name', $selectedBarangay)?->name : 'Select or Search Barangay' }}</span>
                                 <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -285,7 +285,7 @@
                             <legend class="text-sm text-gray-600 dark:text-neutral-400 mt-3 w-full border-gray-200">
                                 <p class="text-base text-gray-600 dark:text-neutral-400 mb-0 ml-4 w-fit border border-transparent bg-white dark:bg-transparent">City</p>
                             <div @click="open = !open"
-                                class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center -mt-3">
+                                class="border rounded-lg px-4 py-3 cursor-pointer bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 flex justify-between items-center">
                                 <span>{{ $billing_city ? $bil_cities->firstWhere('code', $billing_city)?->name : 'Select or Search City' }}</span>
                                 <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -377,7 +377,7 @@
                                 <p class="text-base text-black-600 dark:text-neutral-400 bg-white mb-0 ml-3 px-1 border border-transparent dark:bg-transparent">Notes</p>
                             <textarea
                                 wire:model="notes"
-                                class="py-2 px-3 sm:py-3 sm:px-4 block w-full bg-white border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 -mt-3"
+                                class="py-2 px-3 sm:py-3 sm:px-4 block w-full bg-white border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 rows="3" placeholder="Type your notes here..."></textarea>
                             </legend>
                         </fieldset>
